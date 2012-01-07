@@ -23,10 +23,12 @@ public class Files extends Controller {
 
     public static void parsedGedcom(File file, boolean useTreeParser) throws IOException, SAXException {
 
+/*
         final Document doc = new Document();
         doc.fileName = file.getName();
         doc.contentType = MimeTypes.getContentType(file.getName());
         doc.save();
+*/
 
         ParsedDocument parsedDocument = new ParsedDocument();
         JsonParser jsonParser = new JsonParser();
