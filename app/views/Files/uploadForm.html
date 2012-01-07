@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+     <h2>Choose a Gedcom File to be converted to JSON</h2>
+
+     #{form @parsedGedcom(), enctype:'multipart/form-data'}
+         <input type="file" name="file"><br/>  <p></p>
+          Use tree parser (use model parser by default):<input type="checkbox" name="useTreeParser">  <p></p>
+         <input type="submit" class="btn primary" name="submit" value="Process Gedcom">    <p></p>
+     #{/form}

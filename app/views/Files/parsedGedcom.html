@@ -1,0 +1,39 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+
+#{set 'moreScripts'}
+
+    <script src="@{'/public/javascripts/jsonformatter.js'}" type="text/javascript"
+        charset="${_response_encoding}"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            // the browser chokes on the json string even though it is encoded
+            // var sJSON = parsedDocument.json
+           //FormatTextarea(sJSON);
+            FormatTextarea();
+        });
+    </script>
+#{/set}
+
+<ul class="tabs" data-tabs="tabs">
+    <li class="active"><a href="#home">JSON</a></li>
+    <li><a href="#profile">Original Gedcom</a></li>
+    <li><a href="#messages">Re-Constitued Gedcom</a></li>
+</ul>
+<div id="my-tab-content" class="tab-content">
+    <div class="active tab-pane" id="home">
+        <textarea id="jsonCanvas" style="height: 450px; width: 879px" >
+             ${parsedDocument.json}
+        </textarea>
+    </div>
+    <div class="tab-pane" id="profile">
+        <textarea id="gedcomTextArea" style="height: 450px; width: 879px" >
+            ${parsedDocument.originalGedcom}
+        </textarea>
+    </div>
+    <div class="tab-pane" id="messages">
+        <p>Nothing here yet</p>
+    </div>
+</div>
