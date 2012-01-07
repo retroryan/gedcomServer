@@ -9,11 +9,14 @@
 
     <script type="text/javascript">
         $(function() {
-            // the browser chokes on the json string even though it is encoded
-            // var sJSON = parsedDocument.json
-           //FormatTextarea(sJSON);
-            FormatTextarea();
-        });
+            var btn = $('#formatJSON').click(function () {
+                // the browser chokes on the json string even though it is encoded
+                // var sJSON = parsedDocument.json
+                //FormatTextarea(sJSON);
+                FormatTextarea();
+                btn.button("Formated JSON")
+            });
+          })
     </script>
 #{/set}
 
@@ -37,6 +40,7 @@
                 ${parsedDocument.json}
             </textarea>
         </p>
+        <button id="formatJSON" class="btn">Format JSON</button>
     </div>
     <div class="span-one-third">
         <h2>Original Gedcom</h2>
