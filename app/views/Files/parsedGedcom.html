@@ -17,23 +17,42 @@
     </script>
 #{/set}
 
-<ul class="tabs" data-tabs="tabs">
-    <li class="active"><a href="#home">JSON</a></li>
-    <li><a href="#profile">Original Gedcom</a></li>
-    <li><a href="#messages">Re-Constitued Gedcom</a></li>
-</ul>
-<div id="my-tab-content" class="tab-content">
-    <div class="active tab-pane" id="home">
-        <textarea id="jsonCanvas" style="height: 450px; width: 879px" >
-             ${parsedDocument.json}
-        </textarea>
+<!-- Main hero unit for a primary marketing message or call to action -->
+<div class="content">
+    <h2>Gedcom Warnings and Errors</h2>
+    <textarea id="warningTextArea" style="height: 200px; width: 100%" >
+        ${parsedDocument.warnings}
+    </textarea>
+</div>
+
+<p></p>
+<p></p>
+
+<!-- Example row of columns -->
+<div class="row">
+    <div class="span-one-third">
+        <h2>JSON</h2>
+        <p>
+            <textarea id="jsonTextArea" style="height: 350px; width: 90%" >
+                ${parsedDocument.json}
+            </textarea>
+        </p>
     </div>
-    <div class="tab-pane" id="profile">
-        <textarea id="gedcomTextArea" style="height: 450px; width: 879px" >
-            ${parsedDocument.originalGedcom}
-        </textarea>
+    <div class="span-one-third">
+        <h2>Original Gedcom</h2>
+        <p>
+            <textarea id="gedcomTextArea" style="height: 350px; width: 90%" >
+                ${parsedDocument.originalGedcom}
+            </textarea>
+        </p>
     </div>
-    <div class="tab-pane" id="messages">
-        <p>Nothing here yet</p>
+    <div class="span-one-third">
+        <h2>Re-Constitued Gedcom</h2>
+        <p>
+            <textarea id="reconsitituedGedcomTextArea" style="height: 350px; width: 90%" >
+                ${parsedDocument.reconstituedGedcom}
+            </textarea>
+        </p>
     </div>
 </div>
+

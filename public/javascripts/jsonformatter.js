@@ -81,7 +81,7 @@ function FormatJSON(oData, sIndent) {
 
 function FormatTextarea(sJSON) {
 
-    var sJSON = $id("jsonCanvas").value;
+    var sJSON = $id("jsonTextArea").value;
 
     if (sJSON.length > 0) {
         try {
@@ -91,7 +91,7 @@ function FormatTextarea(sJSON) {
             //    oJSON = SortObject(oJSON);
             //}
 
-            $id("jsonCanvas").value = FormatJSON(oJSON);
+            $id("jsonTextArea").value = FormatJSON(oJSON);
         } catch (sError) {
             alert("You are attempting to parse invalid JSON.")
         }
