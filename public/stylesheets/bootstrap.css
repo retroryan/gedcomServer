@@ -190,9 +190,10 @@ body {
   color: #404040;
 }
 .container {
-  width: 940px;
+  /* width: 940px;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
+  margin: 0 16px;
   zoom: 1;
 }
 .container:before, .container:after {
@@ -264,7 +265,7 @@ a:hover {
 .row > [class*="span"] {
   display: inline;
   float: left;
-  margin-left: 20px;
+  margin-left: 2%;
 }
 .span1 {
   width: 40px;
@@ -375,7 +376,7 @@ a:hover {
   margin-left: 740px;
 }
 .span-one-third {
-  width: 300px;
+  width: 31%;
 }
 .span-two-thirds {
   width: 620px;
@@ -2467,4 +2468,20 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   -webkit-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   -moz-box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
   box-shadow: 0 1px 4px rgba(0, 105, 214, 0.25);
+}
+
+#warnings {
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #bbb;
+  padding: 4px 8px;
+  white-space: pre;
+}
+
+div.code {
+  height: 350px;
+  overflow: auto;
+  border: 1px solid #bbb;
+  padding: 4px 8px;
+  white-space: pre;
 }
