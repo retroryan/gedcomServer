@@ -7,12 +7,10 @@ import org.folg.gedcom.parser.ErrorHandler;
 import org.folg.gedcom.parser.JsonParser;
 import org.folg.gedcom.parser.ModelParser;
 import org.folg.gedcom.tools.CountsCollector;
+import org.folg.gedcom.visitors.GedcomWriter;
 import org.xml.sax.SAXParseException;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,8 +61,13 @@ public class Gedcom2Json implements ErrorHandler {
         ccErrors.writeSorted(false, 1, printWriter);
         parsedDocument.warnings = stringWriter.toString();
 
+
         parsedDocument.originalGedcom = FileUtils.readFileToString(file);
 
+        GedcomWriter writer = new GedcomWriter();
+        OutputStream out = new ByteArrayOutputStream();
+        writer.write(gedcom, out);
+        parsedDocument.reconstituedGedcom = out.toString();
 
         return parsedDocument;
     }
