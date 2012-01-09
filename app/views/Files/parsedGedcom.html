@@ -22,7 +22,7 @@
 
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="content">
-    <h2>Gedcom Warnings and Errors</h2>
+    <h2>Out-of-model tags</h2>
     <div id="warnings">${parsedDocument.warnings}</div>
 </div>
 
@@ -32,16 +32,16 @@
 <!-- Example row of columns -->
 <div class="row">
     <div class="span-one-third">
-        <h2>JSON</h2>
+        <h2>2. Model as JSON</h2>
 	<div id="jsonTextArea" class="code">${parsedDocument.json}</div>
         <!-- <button id="formatJSON" class="btn">Format JSON</button> -->
     </div>
     <div class="span-one-third">
-        <h2>Original Gedcom</h2>
+        <h2>1. Original Gedcom</h2>
 	<div id="gedcomTextArea" class="code">${parsedDocument.originalGedcom}</div>
     </div>
     <div class="span-one-third">
-        <h2>Re-Constituted Gedcom</h2>
+        <h2>3. Re-Constituted Gedcom</h2>
 	<div id="reconstitutedGedcomTextArea" class="code">${parsedDocument.reconstituedGedcom}</div>
     </div>
 </div>

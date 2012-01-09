@@ -13,58 +13,72 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Gedcom2Json implements ErrorHandler {
 
-    private Set<String> warnings;
-    private Set<String> errors;
+    private List<String> warnings;
+    private List<String> errors;
 
     public void warning(String message, int lineNumber) {
-        warnings.add(message);
+        warnings.add(message+" @ "+lineNumber);
     }
 
     public void error(String message, int lineNumber) {
-        errors.add(message);
+        errors.add(message+" @ "+lineNumber);
     }
 
     public void fatalError(String message, int lineNumber) {
-        // we need to add error handling and return error message to client
+        // handle below
     }
 
 
     public ParsedDocument parseGedcom(File file) throws SAXParseException, IOException {
 
-        warnings = new HashSet<String>();
-        errors = new HashSet<String>();
+        warnings = new ArrayList<String>();
+        errors = new ArrayList<String>();
 
         ParsedDocument parsedDocument = new ParsedDocument();
         JsonParser jsonParser = new JsonParser();
 
         ModelParser modelParser = new ModelParser();
         modelParser.setErrorHandler(this);
-        Gedcom gedcom = modelParser.parseGedcom(file);
-        parsedDocument.json = jsonParser.toJson(gedcom);
+        try {
+            Gedcom gedcom = modelParser.parseGedcom(file);
+            parsedDocument.json = jsonParser.toJson(gedcom);
 
-        CountsCollector ccWarnings = new CountsCollector();
-        CountsCollector ccErrors = new CountsCollector();
+            // add each error and warning
+            StringBuilder buf = new StringBuilder();
+            for (String error : errors) {
+                buf.append(error);
+                buf.append("\n");
+            }
+            for (String warning : warnings) {
+                buf.append(warning);
+                buf.append("\n");
+            }
+            parsedDocument.warnings = buf.toString();
 
-        for (String warning : warnings) {
-            ccWarnings.add(warning);
+            // add line numbers to the original gedcom
+            buf.setLength(0);
+            int lineNumber = 0;
+            for (String line : FileUtils.readLines(file)) {
+                lineNumber++;
+                buf.append(String.format("%-5s", Integer.toString(lineNumber)));
+                buf.append(" ");
+                buf.append(line);
+                buf.append("\n");
+            }
+            parsedDocument.originalGedcom = buf.toString();
+            //parsedDocument.originalGedcom = FileUtils.readFileToString(file);
         }
-        for (String error : errors) {
-            ccErrors.add(error);
+        catch (SAXParseException e) {
+            parsedDocument.warnings = e.getMessage();
         }
-
-        StringWriter stringWriter = new StringWriter();
-        PrintWriter printWriter = new PrintWriter(stringWriter);
-        ccWarnings.writeSorted(false, 1, printWriter);
-        ccErrors.writeSorted(false, 1, printWriter);
-        parsedDocument.warnings = stringWriter.toString();
-
-        parsedDocument.originalGedcom = FileUtils.readFileToString(file);
-
+        catch (IOException e) {
+            parsedDocument.warnings = e.getMessage();
+        }
 
         return parsedDocument;
     }
