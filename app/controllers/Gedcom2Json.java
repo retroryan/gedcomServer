@@ -63,9 +63,17 @@ public class Gedcom2Json implements ErrorHandler {
             // add line numbers to the original gedcom
             buf.setLength(0);
             int lineNumber = 0;
+            final String SPACES = "     ";
+            String lineNumberString;
             for (String line : FileUtils.readLines(file)) {
                 lineNumber++;
-                buf.append(String.format("%-5s", Integer.toString(lineNumber)));
+                lineNumberString = Integer.toString(lineNumber);
+                buf.append(lineNumberString);
+                if (lineNumberString.length() < SPACES.length()) {
+                  buf.append(SPACES.substring(lineNumberString.length()));
+                }
+//                String.format seems slow
+//                buf.append(String.format("%-5s", Integer.toString(lineNumber)));
                 buf.append(" ");
                 buf.append(line);
                 buf.append("\n");
