@@ -78,19 +78,19 @@ public class Gedcom2Json implements ErrorHandler {
             }
             parsedDocument.originalGedcom = buf.toString();
             //parsedDocument.originalGedcom = FileUtils.readFileToString(file);
+
+            // output the reconstituted gedcom
+            GedcomWriter writer = new GedcomWriter();
+            OutputStream out = new ByteArrayOutputStream();
+            writer.write(gedcom, out);
+            parsedDocument.reconstituedGedcom = out.toString();
         }
         catch (SAXParseException e) {
-            parsedDocument.warnings = e.getMessage();
+            parsedDocument.warnings = "Fatal error: "+e.getMessage();
         }
         catch (IOException e) {
-            parsedDocument.warnings = e.getMessage();
+            parsedDocument.warnings = "IO error: "+e.getMessage();
         }
-
-        // output the reconstituted gedcom
-        GedcomWriter writer = new GedcomWriter();
-        OutputStream out = new ByteArrayOutputStream();
-        writer.write(gedcom, out);
-        parsedDocument.reconstituedGedcom = out.toString();
 
         return parsedDocument;
     }
