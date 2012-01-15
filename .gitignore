@@ -1,0 +1,12 @@
+.classpath
+.project
+.settings
+dev.env
+
+data/
+eclipse/
+tmp/
+*.iml
+*.ipr
+*.iws
+out
