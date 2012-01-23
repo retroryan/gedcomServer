@@ -1,48 +1,26 @@
 #{extends 'main.html' /}
 #{set title:'Home' /}
 
-
-#{set 'moreScripts'}
-
-    <script src="@{'/public/javascripts/jsonformatter.js'}" type="text/javascript"
-        charset="${_response_encoding}"></script>
-
-    <script type="text/javascript">
-        $(function() {
-            var btn = $('#formatJSON').click(function () {
-                // the browser chokes on the json string even though it is encoded
-                // var sJSON = parsedDocument.json
-                //FormatTextarea(sJSON);
-                FormatTextarea();
-                btn.button("Formated JSON")
-            });
-          })
-    </script>
-#{/set}
-
-<!-- Main hero unit for a primary marketing message or call to action -->
-<div class="content">
-    <h2>Out-of-model tags</h2>
-    <div id="warnings">${parsedDocument.warnings}</div>
+<div class="content box">
+    <div class="box-header">Out-of-model tags</div>
+    <div class="box-contents" id="warnings">${parsedDocument.warnings}</div>
 </div>
 
 <p></p>
 <p></p>
 
-<!-- Example row of columns -->
 <div class="row">
-    <div class="span-one-third">
-        <h2>2. Model as JSON</h2>
-	<div id="jsonTextArea" class="code">${parsedDocument.json}</div>
-        <!-- <button id="formatJSON" class="btn">Format JSON</button> -->
+    <div class="box span-one-third">
+        <div class="box-header">2. Object model as JSON</div>
+	<div class="box-contents code" id="jsonTextArea">${parsedDocument.json}</div>
     </div>
-    <div class="span-one-third">
-        <h2>1. Original Gedcom</h2>
-	<div id="gedcomTextArea" class="code">${parsedDocument.originalGedcom}</div>
+    <div class="box span-one-third">
+        <div class="box-header">1. Original GEDCOM</div>
+	<div class="box-contents code" id="gedcomTextArea">${parsedDocument.originalGedcom}</div>
     </div>
-    <div class="span-one-third">
-        <h2>3. Re-Constituted Gedcom</h2>
-	<div id="reconstitutedGedcomTextArea" class="code">${parsedDocument.reconstituedGedcom}</div>
+    <div class="box span-one-third">
+        <div class="box-header">3. Re-constituted GEDCOM</div>
+	<div class="box-contents code" id="reconstitutedGedcomTextArea">${parsedDocument.reconstituedGedcom}</div>
     </div>
 </div>
 

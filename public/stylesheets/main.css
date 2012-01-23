@@ -1,0 +1,58 @@
+div.topbar-inner {
+  background-color: #ff6f1b;
+  background-image: none;
+}
+.topbar a {
+  text-shadow: none;
+}
+a.download {
+  text-align: right; 
+  color: #FFF; 
+  font-size:18px; 
+  line-height:40px;
+}
+.btn.primary {
+  background-color: #007ecd;
+  background-image: -moz-linear-gradient(center top, #0f89db, #007ecd);
+}
+.topbar a.brand {
+  padding: 10px 20px;
+}
+h2 {
+  margin-bottom: 12px;
+}
+div.tagline {
+  color: #333;
+  font-size: 12px;
+  padding: 0 18px 12px;
+}
+body {
+  padding-top: 55px;
+}
+#warnings {
+  height: 200px;
+}
+div.code {
+  height: 350px;
+}
+div.box {
+  border: 1px solid #bbb;
+}
+div.box-header {
+  color: #333;
+  background-color: #c8e6fa;
+  padding: 4px 10px;
+  font-size: 22px;
+  line-height: 36px;
+  font-weight: bold;
+  border-bottom: 1px solid #bbb;
+}
+div.box-contents {
+  overflow: auto;
+  padding: 4px 8px;
+  white-space: pre;
+}
+div.row {
+  margin-bottom: 12px;
+}
+
